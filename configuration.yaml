@@ -1,0 +1,13 @@
+# Access the Hagelschutz - einfach automatisch API 
+# Replace $deviceID, $hwtypeID, $user and $pass with your parameters (received by eMail from VKG after registration)
+
+sensor:  
+  - platform: rest
+    name: "hagelschutz"
+    resource: https://meteo.netitservices.com/api/v1/devices/$deviceID/poll?hwtypeId=$hwtypeID
+    username: $user
+    password: $pass
+    authentication: basic
+    method: GET
+    scan_interval: 120
+    value_template: "{{ value_json.currentState }}"  
